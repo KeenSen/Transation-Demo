@@ -1,0 +1,15 @@
+
+server:
+  servlet:
+    context-path: /transaction-demo
+  port: 8080
+
+management:
+  server:
+    port: 10086
+  endpoints:
+    web:
+      base-path: /admin
+  endpoint:
+    health:
+      show-details: always
