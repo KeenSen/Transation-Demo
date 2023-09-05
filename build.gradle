@@ -15,10 +15,8 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.kafka:spring-kafka'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '6.0.2'
 }
 
 tasks.named('test') {
