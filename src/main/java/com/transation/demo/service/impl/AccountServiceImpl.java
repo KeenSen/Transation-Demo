@@ -6,6 +6,8 @@ import com.transation.demo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -17,6 +19,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Override
+    public void resetAccountBalance(Long accountId, BigDecimal amount) {
+        String sql = "update account set balance  = ? where id = ?";
+        List<Object> params = Arrays.asList(amount, accountId);
+        jdbcTemplate.update(sql, params.toArray());
+    }
 
     @Override
     public Account createBalance(String name) {
@@ -50,7 +59,20 @@ public class AccountServiceImpl implements AccountService {
         updateAccount(account);
     }
 
-    private Account queryById(Long id) {
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void reduceBalanceInRequiredPropagation(Long accountId, BigDecimal amount) {
+        reduceBalance(accountId, amount);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void increaseBalanceInRequiredPropagation(Long accountId, BigDecimal amount) {
+        increaseBalance(accountId, amount);
+    }
+
+    @Override
+    public Account queryById(Long id) {
         return jdbcTemplate.queryForObject("select * from account where id = ?", new AccountRowMapper(), id);
     }
 
