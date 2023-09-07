@@ -19,4 +19,12 @@ public interface AccountService {
     void reduceBalanceInRequiredPropagation(Long accountId, BigDecimal amount);
 
     void increaseBalanceInRequiredPropagation(Long accountId, BigDecimal amount);
+
+    void reduceBalanceInSupportsPropagation(Long accountId, BigDecimal amount);
+
+    void increaseBalanceInSupportsPropagation(Long accountId, BigDecimal amount);
+
+    void reduceBalanceInMandatoryPropagation(Long accountId, BigDecimal amount);
+
+    void increaseBalanceInMandatoryPropagation(Long accountId, BigDecimal amount);
 }

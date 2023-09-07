@@ -22,7 +22,7 @@ public class TransactionApi {
      */
     @PostMapping("/transfer/required1")
     public void required1(@RequestBody TransferParam param) {
-        transactionService.transfer1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+        transactionService.transferRequired1(param.getPayerId(), param.getPayeeId(), param.getAmount());
     }
 
     /**
@@ -30,6 +30,38 @@ public class TransactionApi {
      */
     @PostMapping("/transfer/required2")
     public void required2(@RequestBody TransferParam param) {
-        transactionService.transfer2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+        transactionService.transferRequired2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部没有事务，内部事务为supports
+     */
+    @PostMapping("/transfer/supports1")
+    public void supports1(@RequestBody TransferParam param) {
+        transactionService.transferSupports1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部有事务，内部事务为supports
+     */
+    @PostMapping("/transfer/supports2")
+    public void supports2(@RequestBody TransferParam param) {
+        transactionService.transferSupports2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部没有事务，内部事务为mandatory
+     */
+    @PostMapping("/transfer/mandatory1")
+    public void mandatory1(@RequestBody TransferParam param) {
+        transactionService.transferMandatory1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部存在事务，内部事务为mandatory
+     */
+    @PostMapping("/transfer/mandatory2")
+    public void mandatory2(@RequestBody TransferParam param) {
+        transactionService.transferMandatory2(param.getPayerId(), param.getPayeeId(), param.getAmount());
     }
 }

@@ -61,7 +61,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void transfer1(Long payerId, Long payeeId, BigDecimal amount) {
+    public void transferRequired1(Long payerId, Long payeeId, BigDecimal amount) {
         accountService.reduceBalanceInRequiredPropagation(payerId, amount);
         accountService.increaseBalanceInRequiredPropagation(payeeId, amount);
         Panic.panicForRollBack();
@@ -70,11 +70,41 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional
-    public void transfer2(Long payerId, Long payeeId, BigDecimal amount) {
+    public void transferRequired2(Long payerId, Long payeeId, BigDecimal amount) {
         accountService.reduceBalanceInRequiredPropagation(payerId, amount);
         accountService.increaseBalanceInRequiredPropagation(payeeId, amount);
         Panic.panicForRollBack();
         appendTransactionRecord(payerId, payeeId, amount);
+    }
+
+    @Override
+    public void transferSupports1(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.reduceBalanceInSupportsPropagation(payerId, amount);
+        accountService.increaseBalanceInSupportsPropagation(payeeId, amount);
+    }
+
+    @Override
+    @Transactional
+    public void transferSupports2(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.reduceBalanceInSupportsPropagation(payerId, amount);
+        accountService.increaseBalanceInSupportsPropagation(payeeId, amount);
+    }
+
+    @Override
+    public void transferMandatory1(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.reduceBalanceInMandatoryPropagation(payerId, amount);
+        accountService.increaseBalanceInMandatoryPropagation(payeeId, amount);
+    }
+
+    @Override
+    @Transactional
+    public void transferMandatory2(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.reduceBalanceInMandatoryPropagation(payerId, amount);
+        accountService.increaseBalanceInMandatoryPropagation(payeeId, amount);
     }
 
     @Override

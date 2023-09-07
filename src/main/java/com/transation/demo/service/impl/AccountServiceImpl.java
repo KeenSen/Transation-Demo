@@ -3,6 +3,7 @@ package com.transation.demo.service.impl;
 import com.transation.demo.model.Account;
 import com.transation.demo.model.AccountRowMapper;
 import com.transation.demo.service.AccountService;
+import com.transation.demo.utils.Panic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,29 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void increaseBalanceInRequiredPropagation(Long accountId, BigDecimal amount) {
+        increaseBalance(accountId, amount);
+    }
+
+    @Override
+    public void reduceBalanceInSupportsPropagation(Long accountId, BigDecimal amount) {
+        reduceBalance(accountId, amount);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void increaseBalanceInSupportsPropagation(Long accountId, BigDecimal amount) {
+        increaseBalance(accountId, amount);
+        Panic.panicForRollBack();
+    }
+
+    @Override
+    public void reduceBalanceInMandatoryPropagation(Long accountId, BigDecimal amount) {
+        reduceBalance(accountId, amount);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void increaseBalanceInMandatoryPropagation(Long accountId, BigDecimal amount) {
         increaseBalance(accountId, amount);
     }
 

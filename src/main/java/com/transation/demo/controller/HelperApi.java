@@ -21,7 +21,7 @@ public class HelperApi {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/reset-data")
+    @DeleteMapping("/reset-data")
     @Transactional
     public void resetData(@RequestBody TransferParam param) {
         accountService.resetAccountBalance(param.getPayerId(), param.getAmount());

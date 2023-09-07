@@ -10,7 +10,7 @@ public class AccountTransactionRowMapper implements RowMapper<AccountTransaction
     @Override
     public AccountTransaction mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long id = resultSet.getLong("id");
-        Long accountId = resultSet.getLong("account");
+        Long accountId = resultSet.getLong("account_id");
         BigDecimal amount = resultSet.getBigDecimal("amount");
         String description = resultSet.getString("description");
         AccountTransaction result = new AccountTransaction();
