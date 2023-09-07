@@ -27,4 +27,6 @@ public interface AccountService {
     void reduceBalanceInMandatoryPropagation(Long accountId, BigDecimal amount);
 
     void increaseBalanceInMandatoryPropagation(Long accountId, BigDecimal amount);
+
+    void transferInRequiredNewPropagation(Long fromAccountId, Long toAccountId, BigDecimal amount, boolean throwException);
 }

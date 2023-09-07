@@ -108,6 +108,21 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Transactional
+    public void transferRequiredNew1(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.transferInRequiredNewPropagation(payerId, payeeId, amount, false);
+        Panic.panicForRollBack();
+    }
+
+    @Override
+    @Transactional
+    public void transferRequiredNew2(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.transferInRequiredNewPropagation(payerId, payeeId, amount, true);
+    }
+
+    @Override
     public List<AccountTransaction> getAllTransactionRecords() {
         List<String> allIds = jdbcTemplate.queryForList("select id from account_transaction", String.class);
         return allIds.stream().map(this::loadTransaction).collect(Collectors.toList());

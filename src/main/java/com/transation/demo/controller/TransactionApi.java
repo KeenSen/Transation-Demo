@@ -64,4 +64,20 @@ public class TransactionApi {
     public void mandatory2(@RequestBody TransferParam param) {
         transactionService.transferMandatory2(param.getPayerId(), param.getPayeeId(), param.getAmount());
     }
+
+    /**
+     * 外部方法有事务，内部事务为RequiredNew， 外部方法抛出异常
+     */
+    @PostMapping("/transfer/required-new1")
+    public void requiredNew1(@RequestBody TransferParam param) {
+        transactionService.transferRequiredNew1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法有事务，内部事务为RequiredNew， 内部方法抛出异常
+     */
+    @PostMapping("/transfer/required-new2")
+    public void requiredNew2(@RequestBody TransferParam param) {
+        transactionService.transferRequiredNew2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
 }

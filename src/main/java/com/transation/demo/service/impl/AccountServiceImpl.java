@@ -96,6 +96,16 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void transferInRequiredNewPropagation(Long fromAccountId, Long toAccountId, BigDecimal amount, boolean throwException) {
+        reduceBalance(fromAccountId, amount);
+        increaseBalance(toAccountId, amount);
+        if (throwException) {
+            Panic.panicForRollBack();
+        }
+    }
+
+    @Override
     public Account queryById(Long id) {
         return jdbcTemplate.queryForObject("select * from account where id = ?", new AccountRowMapper(), id);
     }

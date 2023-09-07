@@ -41,5 +41,15 @@ public interface TransactionService {
      */
     void transferMandatory2(Long payerId, Long payeeId, BigDecimal amount);
 
+    /**
+     * 外部方法有事务，内部传播行为为RequiredNew, 外部方法抛出异常
+     */
+    void transferRequiredNew1(Long payerId, Long payeeId, BigDecimal amount);
+
+    /**
+     * 外部方法有事务，内部传播行为为RequiredNew, 内部方法抛出异常
+     */
+    void transferRequiredNew2(Long payerId, Long payeeId, BigDecimal amount);
+
     List<AccountTransaction> getAllTransactionRecords();
 }

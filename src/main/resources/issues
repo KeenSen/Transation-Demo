@@ -1,0 +1,2 @@
+1.transferRequiredNew1:
+ Caused by: org.springframework.dao.CannotAcquireLockException: PreparedStatementCallback; SQL [update account set name = ?, balance  = ? where id = ?]; Lock wait timeout exceeded; try restarting transaction; nested exception is com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction
