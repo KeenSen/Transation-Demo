@@ -80,4 +80,36 @@ public class TransactionApi {
     public void requiredNew2(@RequestBody TransferParam param) {
         transactionService.transferRequiredNew2(param.getPayerId(), param.getPayeeId(), param.getAmount());
     }
+
+    /**
+     * 外部方法无事务，内部事务为NotSupported， 内部方法抛出异常
+     */
+    @PostMapping("/transfer/not-support1")
+    public void notSupport1(@RequestBody TransferParam param) {
+        transactionService.transferNotSupported1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法有事务，内部事务为NotSupported， 内部方法抛出异常
+     */
+    @PostMapping("/transfer/not-support2")
+    public void notSupport2(@RequestBody TransferParam param) {
+        transactionService.transferNotSupported2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法无事务，内部事务为Never
+     */
+    @PostMapping("/transfer/never1")
+    public void never1(@RequestBody TransferParam param) {
+        transactionService.transferNever1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法有事务，内部事务为Never
+     */
+    @PostMapping("/transfer/never2")
+    public void never2(@RequestBody TransferParam param) {
+        transactionService.transferNever2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
 }
