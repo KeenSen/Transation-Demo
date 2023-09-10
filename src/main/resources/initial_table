@@ -14,3 +14,10 @@ CREATE TABLE `account_transaction` (
   PRIMARY KEY (`id`),
   KEY `account_id` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `save_point_demo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `point` varchar(50) COLLATE utf8mb4_unicode_ci NOT null,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

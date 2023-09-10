@@ -1,6 +1,5 @@
 package com.transation.demo.service.impl;
 
-import com.transation.demo.model.AccountRowMapper;
 import com.transation.demo.model.AccountTransaction;
 import com.transation.demo.model.AccountTransactionRowMapper;
 import com.transation.demo.service.AccountService;
@@ -147,6 +146,37 @@ public class TransactionServiceImpl implements TransactionService {
     public void transferNever2(Long payerId, Long payeeId, BigDecimal amount) {
         appendTransactionRecord(payerId, payeeId, amount);
         accountService.transferInNeverPropagation(payerId, payeeId, amount);
+    }
+
+    @Override
+    @Transactional
+    public void transferNested1(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        try {
+            accountService.transferInNestedRollBack(payerId, payeeId, amount);
+        } catch (Exception e) {
+            System.out.println("外部方法捕获异常，不抛出，最终提交外部事务");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void transferNested2(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        try {
+            accountService.transferInNestedRollBack(payerId, payeeId, amount);
+        } catch (Exception e) {
+            System.out.println("外部方法捕获异常，继续抛出，最终回滚外部事务");
+            throw e;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void transferNested3(Long payerId, Long payeeId, BigDecimal amount) {
+        appendTransactionRecord(payerId, payeeId, amount);
+        accountService.transferInNestedSubmit(payerId, payeeId, amount);
+        Panic.panicForRollBack();
     }
 
     @Override

@@ -71,5 +71,20 @@ public interface TransactionService {
      */
     void transferNever2(Long payerId, Long payeeId, BigDecimal amount);
 
+    /**
+     * 外部方法有事务，内部事务为Nested，抛出异常，外部方法提交事务
+     */
+    void transferNested1(Long payerId, Long payeeId, BigDecimal amount);
+
+    /**
+     * 外部方法有事务，内部事务为Nested，抛出异常，外部方法回滚事务
+     */
+    void transferNested2(Long payerId, Long payeeId, BigDecimal amount);
+
+    /**
+     * 外部方法有事务，内部事务为Nested，正常提交，外部方法回滚事务
+     */
+    void transferNested3(Long payerId, Long payeeId, BigDecimal amount);
+
     List<AccountTransaction> getAllTransactionRecords();
 }

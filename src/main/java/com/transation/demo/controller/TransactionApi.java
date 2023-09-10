@@ -112,4 +112,28 @@ public class TransactionApi {
     public void never2(@RequestBody TransferParam param) {
         transactionService.transferNever2(param.getPayerId(), param.getPayeeId(), param.getAmount());
     }
+
+    /**
+     * 外部方法有事务，内部事务为回滚的Nested，外部方法提交事务
+     */
+    @PostMapping("/transfer/nested1")
+    public void nested1(@RequestBody TransferParam param) {
+        transactionService.transferNested1(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法有事务，内部事务为回滚的Nested，外部方法回滚事务
+     */
+    @PostMapping("/transfer/nested2")
+    public void nested2(@RequestBody TransferParam param) {
+        transactionService.transferNested2(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
+
+    /**
+     * 外部方法有事务，内部事务为正常提交的Nested，外部方法回滚事务
+     */
+    @PostMapping("/transfer/nested3")
+    public void nested3(@RequestBody TransferParam param) {
+        transactionService.transferNested3(param.getPayerId(), param.getPayeeId(), param.getAmount());
+    }
 }

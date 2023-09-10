@@ -7,7 +7,6 @@ import com.transation.demo.utils.Panic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -117,6 +116,20 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional(propagation = Propagation.NEVER)
     public void transferInNeverPropagation(Long fromAccountId, Long toAccountId, BigDecimal amount) {
+        reduceBalance(fromAccountId, amount);
+        increaseBalance(toAccountId, amount);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NESTED)
+    public void transferInNestedRollBack(Long fromAccountId, Long toAccountId, BigDecimal amount) {
+        reduceBalance(fromAccountId, amount);
+        increaseBalance(toAccountId, amount);
+        Panic.panicForRollBack();
+    }
+
+    @Override
+    public void transferInNestedSubmit(Long fromAccountId, Long toAccountId, BigDecimal amount) {
         reduceBalance(fromAccountId, amount);
         increaseBalance(toAccountId, amount);
     }

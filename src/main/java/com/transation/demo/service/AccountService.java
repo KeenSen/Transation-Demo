@@ -33,4 +33,8 @@ public interface AccountService {
     void transferInNotSupportPropagation(Long fromAccountId, Long toAccountId, BigDecimal amount);
 
     void transferInNeverPropagation(Long fromAccountId, Long toAccountId, BigDecimal amount);
+
+    void transferInNestedRollBack(Long fromAccountId, Long toAccountId, BigDecimal amount);
+
+    void transferInNestedSubmit(Long fromAccountId, Long toAccountId, BigDecimal amount);
 }
