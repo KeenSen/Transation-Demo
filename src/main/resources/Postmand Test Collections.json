@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "e73708e7-2065-4ec0-9c38-7c381a6bb264",
+		"name": "Transaction Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "重置数据",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/util/reset-data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"util",
+						"reset-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取数据概览图",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/util/data-summary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"util",
+						"data-summary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部没有事务，内部Required",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/required1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"required1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部有事务，内部Required",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/required2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"required2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部没有事务，内部Supports",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/supports1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"supports1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部有事务，内部Supports",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/supports2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"supports2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部没有事务，内部Mandatory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/mandatory1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"mandatory1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "外部有事务，内部Mandatory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/mandatory2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"mandatory2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[RequiredNew] 外部方法抛错",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/required-new1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"required-new1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[RequiredNew] 内部方法抛错",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/required-new2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"required-new2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Not Support] 外部方法无事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/not-support1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"not-support1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Not Support] 外部方法有事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/not-support2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"not-support2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Never] 外部方法无事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/never1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"never1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Never] 外部方法有事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/never2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"never2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Nested] 内部报错，外部方法提交事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/nested1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"nested1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Nested] 内部报错，外部方法回滚事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/nested2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"nested2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Nested] 内部正常，外部方法回滚事务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payerId\": 101,\r\n    \"payeeId\": 201,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction-demo/transaction/transfer/nested3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction-demo",
+						"transaction",
+						"transfer",
+						"nested3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
