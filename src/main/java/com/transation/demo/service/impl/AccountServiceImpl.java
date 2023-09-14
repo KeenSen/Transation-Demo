@@ -73,6 +73,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void reduceBalanceInSupportsPropagation(Long accountId, BigDecimal amount) {
         reduceBalance(accountId, amount);
     }
