@@ -63,8 +63,8 @@ public class TransactionServiceImpl implements TransactionService {
     public void transferRequired1(Long payerId, Long payeeId, BigDecimal amount) {
         accountService.reduceBalanceInRequiredPropagation(payerId, amount);
         accountService.increaseBalanceInRequiredPropagation(payeeId, amount);
-        Panic.panicForRollBack();
         appendTransactionRecord(payerId, payeeId, amount);
+        Panic.panicForRollBack();
     }
 
     @Override
@@ -72,8 +72,8 @@ public class TransactionServiceImpl implements TransactionService {
     public void transferRequired2(Long payerId, Long payeeId, BigDecimal amount) {
         accountService.reduceBalanceInRequiredPropagation(payerId, amount);
         accountService.increaseBalanceInRequiredPropagation(payeeId, amount);
-        Panic.panicForRollBack();
         appendTransactionRecord(payerId, payeeId, amount);
+        Panic.panicForRollBack();
     }
 
     @Override
@@ -119,7 +119,12 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional
     public void transferRequiredNew2(Long payerId, Long payeeId, BigDecimal amount) {
         appendTransactionRecord(payerId, payeeId, amount);
-        accountService.transferInRequiredNewPropagation(payerId, payeeId, amount, true);
+        try {
+            accountService.transferInRequiredNewPropagation(payerId, payeeId, amount, true);
+
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
